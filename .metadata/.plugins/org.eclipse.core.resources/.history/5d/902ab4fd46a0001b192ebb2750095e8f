@@ -1,0 +1,62 @@
+package com.learner.controller;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.learner.entity.Product;
+import com.learner.repository.ProductRepository;
+
+@RestController
+@RequestMapping("/api")
+public class ProductController {
+	@Autowired
+	ProductRepository productRepository;
+	
+	@GetMapping("/Products")
+	public List<Product> getAllProduct()
+	{
+		List<Product> productList = productRepository.findAll();
+		return productList ;
+	}
+	@GetMapping("/Products/{id}")
+	public Product getProductById(@PathVariable(value="id") Long productId)
+	{
+		Product product = null;
+		product = productRepository.findById(productId).get();
+		return product ;
+	}
+	
+	@PostMapping("/Products/{id}")
+	public Product createProductById(@RequestBody Product product)
+	{
+		Product cproduct;
+		cproduct = productRepository.save(product);
+		return cproduct ;
+	}
+	@PutMapping("/Products/{id}")
+	public Product updateProductById(@PathVariable(value="id") Long productId ,@RequestBody Product product)
+	{
+		Product uproduct;
+		uproduct = productRepository.findById(productId).get();
+		uproduct.setProductName(product.getProductName());
+		uproduct.setDescription(product.getDescription());
+		uproduct.setPrice(product.getPrice());
+		productRepository.save(uproduct);
+		return product;
+	
+	}
+	
+	@DeleteMapping("/Products/{id}")
+	public Product deleteProductById(@PathVariable(value="id") Long productId)
+	{
+		productRepository.deleteById(productId);
+	}
+}

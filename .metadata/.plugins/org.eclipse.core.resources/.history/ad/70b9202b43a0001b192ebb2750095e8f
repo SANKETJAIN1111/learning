@@ -1,0 +1,8 @@
+#Database Configuration 
+spring.datasource.url=jdbc:mysql://localhost:3306/learning
+spring.datasource.username=root
+spring.datasource.password=sanketjain
+#JPA And Hibernate 
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.properties.hibernate.dialact = org.hibernate.dialact.MYSQL5InnoDBDialact
+

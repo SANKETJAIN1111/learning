@@ -1,0 +1,75 @@
+package com.learner.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PRODUCTS")
+
+public class Product {
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="PRODUCTID", nullable=false)
+	private Long productId;
+	@Column(name="PRODUCTNAME", nullable=false)
+	private String productName;
+	@Column(name="DESCRIPTION", nullable=false)
+	private String description;
+	@Column(name="PRICE", nullable=false)
+	private Float price;
+	
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+
+
+	public Product(Long productId, String productName, String description, Float price) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.description = description;
+		this.price = price;
+	}
+	public Product() {
+		super();
+		}
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", description=" + description
+				+ ", price=" + price + "]";
+	}
+}

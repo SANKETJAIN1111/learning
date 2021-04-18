@@ -1,0 +1,15 @@
+package com.learner.entity;
+
+public class Product {
+
+	private Long productId;
+	
+	private String productName;
+	private String productId;
+	private String productId;
+	
+	public Product() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
